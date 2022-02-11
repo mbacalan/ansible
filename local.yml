@@ -1,0 +1,64 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update apt
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - base
+        - extra
+  tasks:
+  - name: Install git & ZSH
+    apt:
+      name: ['git', 'zsh']
+    tags:
+      - base
+      - exta
+  - name: Change Shell
+    shell: chsh -s `which zsh`
+    tags:
+      - base
+      - extra
+  - name: Install ohmyzsh [1/2]
+    git:
+      repo: https://github.com/robbyrussell/oh-my-zsh
+      dest: ~/.oh-my-zsh
+    tags:
+      - base
+      - extra
+  - name: Install ohmyzsh [2/2]
+    copy:
+      src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+      dest: ~/.zshrc
+  - name: Install Node.js & npm
+    apt:
+      name: ['nodejs', 'npm']
+    tags:
+      - base
+      - extra
+  - name: Install n
+    npm:
+      name: n
+      global: true
+    tags:
+      - base
+      - extra
+  - name: Use Node.js LTS
+    shell: n lts
+    tags:
+      - base
+      - extra
+  - name: Install diff-so-fancy
+    npm:
+      name: diff-so-fancy
+      global: true
+    tags:
+      - base
+      - extra
+  - name: Install fzf
+    apt: name=fzf
+    tags:
+      - base
+      - extra
