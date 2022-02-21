@@ -1,0 +1,24 @@
+- name: Install stow
+  become: true
+  apt:
+    name: ['stow']
+  tags:
+    - core
+    - dotfiles
+- name: Clone .dotfiles
+  git:
+    repo: 'git@github.com:mbacalan/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: true
+    version: master
+  tags:
+    - core
+    - dotfiles
+- name: Stow .dotfiles
+  shell: cd $HOME/.dotfiles && ./linux
+  tags:
+    - core
+    - dotfiles
+

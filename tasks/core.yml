@@ -1,0 +1,7 @@
+- name: Install core packages (apt)
+  become: true
+  apt:
+    name: ['git', 'zsh', 'tmux', 'fzf', 'curl', 'htop', 'xclip', 'tldr', 'ripgrep']
+  tags:
+    - core
+

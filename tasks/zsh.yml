@@ -1,0 +1,28 @@
+- name: Install ZSH
+  become: true
+  apt:
+    name: ['zsh']
+  tags:
+    - core
+    - zsh
+- name: Change Shell
+  shell: chsh -s `which zsh`
+  tags:
+    - core
+    - zsh
+- name: Install ohmyzsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+  tags:
+    - core
+    - zsh
+- name: Intall zsh-autosuggestions
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+- name: Intall zsh-z
+  git:
+    repo: 'https://github.com/agkozak/zsh-z.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-z"
+
