@@ -1,10 +1,5 @@
 # Ansible Setup
 
-Clone this and run `ansible-playbook local.yml`
-
-or be cool and
-
-`ansible-pull git@github.com:ThePrimeagen/ansible.git`
-
-It (*should*) just works!
+Local: `ansible-playbook local.yml -K --ask-vault-password`
+Remote: `ansible-pull -U git@github.com:mbacalan/ansible.git -K --ask-vault-password`
 
