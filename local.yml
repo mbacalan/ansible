@@ -10,11 +10,11 @@
         update_cache: true
         state: present
       tags:
+        - ssh
         - core
-        - extra
         - zsh
-        - dotfiles
         - node
+        - dotfiles
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/core.yml

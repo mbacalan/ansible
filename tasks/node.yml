@@ -3,25 +3,21 @@
   apt:
     name: ['nodejs', 'npm']
   tags:
-    - core
     - node
 - name: Install n via npm
   npm:
     name: n
     global: true
   tags:
-    - core
     - node
 - name: Use Node.js LTS
   shell: n lts
   tags:
-    - core
     - node
 - name: Install diff-so-fancy
   npm:
     name: diff-so-fancy
     global: true
   tags:
-    - core
     - node
 
